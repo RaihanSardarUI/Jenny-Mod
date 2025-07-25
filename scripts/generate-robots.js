@@ -1,8 +1,11 @@
-User-agent: *
+import { SITE_CONFIG } from '../src/config/domain.js';
+import fs from 'fs';
+
+const robotsContent = `User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jennymod.pro/sitemap.xml
+Sitemap: ${SITE_CONFIG.url}/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1
@@ -27,4 +30,7 @@ Allow: /mcpe
 Allow: /privacy-policy
 Allow: /terms-and-conditions
 Allow: /disclaimer
-Allow: /cookie-policy
+Allow: /cookie-policy`;
+
+fs.writeFileSync('public/robots.txt', robotsContent);
+console.log('Robots.txt generated successfully!');

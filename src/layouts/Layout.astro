@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE_CONFIG } from '../config/domain.js';
 
 export interface Props {
   title: string;
@@ -11,7 +12,7 @@ export interface Props {
 
 const { 
   title, 
-  description = "Download Jenny Mod for Your Minecraft Java and MCPE Edition. Here Also You Can Download Jenny Mod Fapcraft Version. Visit Now!",
+  description = SITE_CONFIG.description,
   keywords = "Jenny Mod, Minecraft, MCPE, Java Edition, Fapcraft, Download",
   ogImage = "/screenshots/Jenny-Mod-Thumbnail.webp",
   canonical
@@ -63,38 +64,36 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     
     <!-- Schema.org structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Jenny Mod",
-        "alternateName": "Jenny Mod Official",
-        "url": "https://jennymod.dev",
-        "description": "Download Jenny Mod for Your Minecraft Java and MCPE Edition. Here Also You Can Download Jenny Mod Fapcraft Version. Visit Now!",
-        "keywords": "Jenny Mod, Minecraft, MCPE, Java Edition, Fapcraft, Download, 1.12.2",
-        "inLanguage": "en-US",
-        "copyrightYear": "2025",
-        "author": {
-          "@type": "Organization",
-          "name": "Jenny Mod Dev Team"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Jenny Mod",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://jennymod.dev/icon/cropped-Jenny-Mod-300x300.webp",
-            "width": 300,
-            "height": 300
-          }
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://jennymod.dev/search?q={search_term_string}",
-          "query-input": "required name=search_term_string"
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": SITE_CONFIG.name,
+      "alternateName": "Jenny Mod Official",
+      "url": SITE_CONFIG.url,
+      "description": SITE_CONFIG.description,
+      "keywords": "Jenny Mod, Minecraft, MCPE, Java Edition, Fapcraft, Download, 1.12.2",
+      "inLanguage": "en-US",
+      "copyrightYear": "2025",
+      "author": {
+        "@type": "Organization",
+        "name": "Jenny Mod Dev Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": SITE_CONFIG.name,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${SITE_CONFIG.url}/icon/cropped-Jenny-Mod-300x300.webp`,
+          "width": 300,
+          "height": 300
         }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${SITE_CONFIG.url}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
       }
-    </script>
+    })}></script>
   </head>
   <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen antialiased">
     <!-- Background Effects -->

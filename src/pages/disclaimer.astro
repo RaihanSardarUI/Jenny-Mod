@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Card from '../components/ui/Card.astro';
+import { SITE_CONFIG } from '../config/domain.js';
 ---
 
 <Layout 
@@ -138,7 +139,7 @@ import Card from '../components/ui/Card.astro';
                 <strong>Limitation of Liability:</strong>
               </p>
               <p>
-                In no event shall jennymod.dev, its developers, or contributors be liable for any direct, indirect, incidental, special, consequential, or punitive damages, including but not limited to:
+                In no event shall {SITE_CONFIG.domain}, its developers, or contributors be liable for any direct, indirect, incidental, special, consequential, or punitive damages, including but not limited to:
               </p>
               <ul class="list-disc list-inside space-y-2">
                 <li>Loss of profits, data, or use</li>
@@ -208,8 +209,8 @@ import Card from '../components/ui/Card.astro';
                 If you have any questions about this disclaimer, please contact us:
               </p>
               <div class="bg-base-200/50 rounded-lg p-6 mt-4">
-                <p class="mb-2"><strong>Website:</strong> <a href="https://jennymod.dev" class="text-primary hover:text-secondary transition-colors">jennymod.dev</a></p>
-                <p class="mb-2"><strong>Email:</strong> <a href="mailto:legal@jennymod.dev" class="text-primary hover:text-secondary transition-colors">legal@jennymod.dev</a></p>
+                <p class="mb-2"><strong>Website:</strong> <a href="{SITE_CONFIG.url}" class="text-primary hover:text-secondary transition-colors">{SITE_CONFIG.domain}</a></p>
+                <p class="mb-2"><strong>Email:</strong> <a href="mailto:legal@{SITE_CONFIG.domain}" class="text-primary hover:text-secondary transition-colors">legal@{SITE_CONFIG.domain}</a></p>
                 <p><strong>Response Time:</strong> We aim to respond to all inquiries within 30 days.</p>
               </div>
             </div>

@@ -8,6 +8,7 @@ import DownloadCard from '../components/ui/DownloadCard.astro';
 import Card from '../components/ui/Card.astro';
 import Button from '../components/ui/Button.astro';
 import ModernFaq from '../components/ui/ModernFaq.astro';
+import { SITE_CONFIG } from '../config/domain.js';
 ---
 
 <Layout 
@@ -362,7 +363,7 @@ import ModernFaq from '../components/ui/ModernFaq.astro';
         <div class="space-y-6 animate-slide-up animate-delay-200">
           <Card variant="glass" class="p-6">
             <p class="text-base-content/90">
-              <strong>Step 1:</strong> Find a reputable source like <a href="https://jennymod.dev/" class="text-primary hover:text-secondary transition-colors" target="_blank" rel="noopener noreferrer">www.jennymod.dev</a> to download the MOD. It is important to make sure you are downloading it from a trusted website like ours, as some versions of Jenny Mod may contain viruses or other harmful components.
+              <strong>Step 1:</strong> Find a reputable source like <a href={SITE_CONFIG.url} class="text-primary hover:text-secondary transition-colors" target="_blank" rel="noopener noreferrer">{SITE_CONFIG.domain}</a> to download the MOD. It is important to make sure you are downloading it from a trusted website like ours, as some versions of Jenny Mod may contain viruses or other harmful components.
             </p>
           </Card>
           
@@ -537,7 +538,7 @@ import ModernFaq from '../components/ui/ModernFaq.astro';
         },
         {
           question: "Is it safe to download and use Jenny Mod?",
-          answer: "Yes, Jenny Mod is completely safe when downloaded from our official website. Always download from trusted sources like <strong>jennymod.dev</strong> to avoid malicious files and ensure your device's security."
+          answer: `Yes, Jenny Mod is completely safe when downloaded from our official website. Always download from trusted sources like <strong>${SITE_CONFIG.domain}</strong> to avoid malicious files and ensure your device's security.`
         },
         {
           question: "Can I download Jenny Mod for free?",
@@ -574,7 +575,7 @@ import ModernFaq from '../components/ui/ModernFaq.astro';
         <Card variant="feature" class="animate-slide-up animate-delay-200">
           <div class="prose prose-lg max-w-none text-base-content/90 space-y-6">
             <p>
-              As we come closer to finishing the article. I just wanna say this mod of Minecraft is one of the most popular mods because <strong><a href="https://jennymod.pro/" class="text-primary hover:text-secondary transition-colors">Jenny Mod</a></strong> is rarely the first time in the history of this game a mod happened that gives players the advantage of having a virtual girlfriend in the game.
+              As we come closer to finishing the article. I just wanna say this mod of Minecraft is one of the most popular mods because <strong><a href={SITE_CONFIG.url} class="text-primary hover:text-secondary transition-colors">Jenny Mod</a></strong> is rarely the first time in the history of this game a mod happened that gives players the advantage of having a virtual girlfriend in the game.
             </p>
             
             <p>
@@ -582,7 +583,7 @@ import ModernFaq from '../components/ui/ModernFaq.astro';
             </p>
             
             <p>
-              <strong>DMCA:</strong> JennyMod.Dev complies with 17 U.S.C. * 512 and the Digital Millennium Copyright Act (DMCA). It is our policy to respond to any infringement notices and take appropriate action. If your copyrighted material has been posted on the site and you want this material removed, Contact us.
+              <strong>DMCA:</strong> {SITE_CONFIG.name} complies with 17 U.S.C. * 512 and the Digital Millennium Copyright Act (DMCA). It is our policy to respond to any infringement notices and take appropriate action. If your copyrighted material has been posted on the site and you want this material removed, Contact us.
             </p>
             
             <p>

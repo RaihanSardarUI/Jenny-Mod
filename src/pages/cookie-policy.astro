@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Card from '../components/ui/Card.astro';
+import { SITE_CONFIG } from '../config/domain.js';
 ---
 
 <Layout 
@@ -60,7 +61,7 @@ import Card from '../components/ui/Card.astro';
             <h2 class="text-2xl font-bold text-primary mb-6">How We Use Cookies</h2>
             <div class="prose prose-lg max-w-none text-base-content/90 space-y-4">
               <p>
-                We use cookies on jennymod.dev to enhance your browsing experience and improve our website. Here's how we use different types of cookies:
+                We use cookies on {SITE_CONFIG.domain} to enhance your browsing experience and improve our website. Here's how we use different types of cookies:
               </p>
               
               <h3 class="text-xl font-semibold text-base-content">Essential Cookies</h3>
@@ -260,8 +261,8 @@ import Card from '../components/ui/Card.astro';
                 If you have any questions about our use of cookies or this Cookie Policy, please contact us:
               </p>
               <div class="bg-base-200/50 rounded-lg p-6 mt-4">
-                <p class="mb-2"><strong>Website:</strong> <a href="https://jennymod.dev" class="text-primary hover:text-secondary transition-colors">jennymod.dev</a></p>
-                <p class="mb-2"><strong>Email:</strong> <a href="mailto:privacy@jennymod.dev" class="text-primary hover:text-secondary transition-colors">privacy@jennymod.dev</a></p>
+                <p class="mb-2"><strong>Website:</strong> <a href="{SITE_CONFIG.url}" class="text-primary hover:text-secondary transition-colors">{SITE_CONFIG.domain}</a></p>
+                <p class="mb-2"><strong>Email:</strong> <a href="mailto:privacy@{SITE_CONFIG.domain}" class="text-primary hover:text-secondary transition-colors">privacy@{SITE_CONFIG.domain}</a></p>
                 <p><strong>Response Time:</strong> We aim to respond to all privacy-related inquiries within 30 days.</p>
               </div>
               <p class="mt-4">

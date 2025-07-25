@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Card from '../components/ui/Card.astro';
+import { SITE_CONFIG } from '../config/domain.js';
 ---
 
 <Layout 
@@ -40,7 +41,7 @@ import Card from '../components/ui/Card.astro';
             <h2 class="text-2xl font-bold text-primary mb-6">1. Acceptance of Terms</h2>
             <div class="prose prose-lg max-w-none text-base-content/90 space-y-4">
               <p>
-                By accessing and using this website (jennymod.dev) and downloading Jenny Mod, you accept and agree to be bound by the terms and provision of this agreement.
+                By accessing and using this website ({SITE_CONFIG.domain}) and downloading Jenny Mod, you accept and agree to be bound by the terms and provision of this agreement.
               </p>
               <p>
                 If you do not agree to abide by the above, please do not use this service or download our mod.
@@ -92,7 +93,7 @@ import Card from '../components/ui/Card.astro';
             <h2 class="text-2xl font-bold text-primary mb-6">4. Disclaimer</h2>
             <div class="prose prose-lg max-w-none text-base-content/90 space-y-4">
               <p>
-                The materials on jennymod.dev are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                The materials on {SITE_CONFIG.domain} are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
               </p>
               <p>
                 Further, we do not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
@@ -105,7 +106,7 @@ import Card from '../components/ui/Card.astro';
             <h2 class="text-2xl font-bold text-primary mb-6">5. Limitations</h2>
             <div class="prose prose-lg max-w-none text-base-content/90 space-y-4">
               <p>
-                In no event shall jennymod.dev or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on jennymod.dev, even if jennymod.dev or an authorized representative has been notified orally or in writing of the possibility of such damage.
+                In no event shall {SITE_CONFIG.domain} or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on {SITE_CONFIG.domain}, even if {SITE_CONFIG.domain} or an authorized representative has been notified orally or in writing of the possibility of such damage.
               </p>
               <p>
                 Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
@@ -193,8 +194,8 @@ import Card from '../components/ui/Card.astro';
                 If you have any questions about these Terms and Conditions, please contact us:
               </p>
               <div class="bg-base-200/50 rounded-lg p-6 mt-4">
-                <p class="mb-2"><strong>Website:</strong> <a href="https://jennymod.dev" class="text-primary hover:text-secondary transition-colors">jennymod.dev</a></p>
-                <p class="mb-2"><strong>Email:</strong> <a href="mailto:legal@jennymod.dev" class="text-primary hover:text-secondary transition-colors">legal@jennymod.dev</a></p>
+                <p class="mb-2"><strong>Website:</strong> <a href={SITE_CONFIG.url} class="text-primary hover:text-secondary transition-colors">{SITE_CONFIG.domain}</a></p>
+                <p class="mb-2"><strong>Email:</strong> <a href={`mailto:legal@${SITE_CONFIG.domain}`} class="text-primary hover:text-secondary transition-colors">legal@{SITE_CONFIG.domain}</a></p>
                 <p><strong>Response Time:</strong> We aim to respond to all legal inquiries within 30 days.</p>
               </div>
             </div>

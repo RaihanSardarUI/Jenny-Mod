@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Card from '../components/ui/Card.astro';
+import { SITE_CONFIG } from '../config/domain.js';
 ---
 
 <Layout 
@@ -197,8 +198,8 @@ import Card from '../components/ui/Card.astro';
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div class="bg-base-200/50 rounded-lg p-6 mt-4">
-                <p class="mb-2"><strong>Website:</strong> <a href="https://jennymod.dev" class="text-primary hover:text-secondary transition-colors">jennymod.dev</a></p>
-                <p class="mb-2"><strong>Email:</strong> <a href="mailto:privacy@jennymod.dev" class="text-primary hover:text-secondary transition-colors">privacy@jennymod.dev</a></p>
+                <p class="mb-2"><strong>Website:</strong> <a href={SITE_CONFIG.url} class="text-primary hover:text-secondary transition-colors">{SITE_CONFIG.domain}</a></p>
+                <p class="mb-2"><strong>Email:</strong> <a href={`mailto:privacy@${SITE_CONFIG.domain}`} class="text-primary hover:text-secondary transition-colors">privacy@{SITE_CONFIG.domain}</a></p>
                 <p><strong>Response Time:</strong> We aim to respond to all privacy-related inquiries within 30 days.</p>
               </div>
             </div>
