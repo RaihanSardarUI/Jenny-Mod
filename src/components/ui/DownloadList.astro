@@ -1,0 +1,254 @@
+---
+import DownloadItem from './DownloadItem.astro';
+
+interface DownloadItemData {
+  id: string;
+  version: string;
+  size: string;
+  uploadDate: string;
+  downloadUrl: string;
+  isRecommended?: boolean;
+  colorTheme: 'green' | 'pink' | 'blue' | 'yellow' | 'purple' | 'orange' | 'cyan' | 'lime';
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  downloads: DownloadItemData[];
+  class?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  downloads,
+  class: className = ""
+} = Astro.props;
+---
+
+<section class={`download-list-section ${className}`}>
+  <!-- Section Header -->
+  <div class="section-header">
+    <h2 class="section-title">
+      {title}
+    </h2>
+    {subtitle && (
+      <p class="section-subtitle">
+        {subtitle}
+      </p>
+    )}
+  </div>
+
+  <!-- Download Items Container -->
+  <div class="downloads-container">
+    {downloads.map((download) => (
+      <DownloadItem
+        key={download.id}
+        version={download.version}
+        size={download.size}
+        uploadDate={download.uploadDate}
+        downloadUrl={download.downloadUrl}
+        colorTheme={download.colorTheme}
+        isRecommended={download.isRecommended}
+      />
+    ))}
+  </div>
+
+  <!-- Additional Info -->
+  {downloads.length === 0 && (
+    <div class="empty-state">
+      <div class="empty-icon">
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+        </svg>
+      </div>
+      <h3 class="empty-title">No Downloads Available</h3>
+      <p class="empty-description">
+        Download options will appear here when they become available.
+      </p>
+    </div>
+  )}
+
+  <!-- Download Count Info -->
+  {downloads.length > 0 && (
+    <div class="download-info">
+      <p class="download-count">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+        {downloads.length} download option{downloads.length !== 1 ? 's' : ''} available
+      </p>
+    </div>
+  )}
+</section>
+
+<style>
+  .download-list-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #efc902, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .downloads-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .empty-icon {
+    margin: 0 auto 1.5rem auto;
+    width: fit-content;
+    opacity: 0.5;
+  }
+
+  .empty-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .empty-description {
+    font-size: 1rem;
+    margin: 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .download-info {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .download-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1023px) {
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+    }
+
+    .downloads-container {
+      max-width: 900px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .section-header {
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+    }
+
+    .downloads-container {
+      padding: 0 1rem;
+    }
+
+    .empty-state {
+      padding: 3rem 1rem;
+    }
+
+    .download-info {
+      padding: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9375rem;
+    }
+
+    .downloads-container {
+      padding: 0 0.5rem;
+    }
+  }
+
+  /* Animation for download items */
+  .downloads-container > :global(.download-item) {
+    animation: slideInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .downloads-container > :global(.download-item:nth-child(1)) { animation-delay: 0.1s; }
+  .downloads-container > :global(.download-item:nth-child(2)) { animation-delay: 0.2s; }
+  .downloads-container > :global(.download-item:nth-child(3)) { animation-delay: 0.3s; }
+  .downloads-container > :global(.download-item:nth-child(4)) { animation-delay: 0.4s; }
+  .downloads-container > :global(.download-item:nth-child(5)) { animation-delay: 0.5s; }
+  .downloads-container > :global(.download-item:nth-child(6)) { animation-delay: 0.6s; }
+  .downloads-container > :global(.download-item:nth-child(7)) { animation-delay: 0.7s; }
+  .downloads-container > :global(.download-item:nth-child(8)) { animation-delay: 0.8s; }
+
+  @keyframes slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .downloads-container > :global(.download-item) {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

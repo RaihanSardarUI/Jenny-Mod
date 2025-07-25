@@ -1,0 +1,201 @@
+---
+// Modern animated background component for hero sections
+---
+
+<div class="hero-background absolute inset-0 overflow-hidden">
+  <!-- Animated Gradient Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-dark-100 via-dark-200 to-dark-300"></div>
+  
+  <!-- Primary Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 animate-pulse"></div>
+  
+  <!-- Floating Geometric Shapes -->
+  <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl animate-float"></div>
+  <div class="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-br from-secondary/15 to-transparent rounded-full blur-3xl animate-float animation-delay-2000"></div>
+  <div class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-gradient-to-br from-accent/15 to-transparent rounded-full blur-3xl animate-float animation-delay-4000"></div>
+  
+  <!-- Grid Pattern Overlay -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="grid-pattern"></div>
+  </div>
+  
+  <!-- Particle Effects -->
+  <div class="particles-container absolute inset-0">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+  </div>
+  
+  <!-- Animated Lines -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="animated-line line-1"></div>
+    <div class="animated-line line-2"></div>
+    <div class="animated-line line-3"></div>
+  </div>
+  
+  <!-- Glow Effects -->
+  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-2 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-sm"></div>
+  <div class="absolute bottom-0 right-1/4 w-64 h-2 bg-gradient-to-r from-transparent via-secondary/30 to-transparent blur-sm"></div>
+</div>
+
+<style>
+  /* Grid Pattern */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(239, 201, 2, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(239, 201, 2, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    width: 100%;
+    height: 100%;
+    animation: gridMove 20s linear infinite;
+  }
+  
+  @keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+  
+  /* Particles */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+  
+  .particle-1 {
+    top: 20%;
+    left: 10%;
+    animation: particleFloat 8s ease-in-out infinite;
+  }
+  
+  .particle-2 {
+    top: 60%;
+    left: 80%;
+    animation: particleFloat 6s ease-in-out infinite reverse;
+  }
+  
+  .particle-3 {
+    top: 80%;
+    left: 20%;
+    animation: particleFloat 10s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+  
+  .particle-4 {
+    top: 30%;
+    left: 70%;
+    animation: particleFloat 7s ease-in-out infinite reverse;
+    animation-delay: -1s;
+  }
+  
+  .particle-5 {
+    top: 50%;
+    left: 50%;
+    animation: particleFloat 9s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+  
+  .particle-6 {
+    top: 10%;
+    left: 60%;
+    animation: particleFloat 5s ease-in-out infinite reverse;
+    animation-delay: -4s;
+  }
+  
+  @keyframes particleFloat {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-40px) translateX(-5px);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translateY(-20px) translateX(-10px);
+      opacity: 1;
+    }
+  }
+  
+  /* Animated Lines */
+  .animated-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0.3;
+  }
+  
+  .line-1 {
+    top: 25%;
+    left: -100%;
+    width: 200%;
+    animation: lineMove 15s linear infinite;
+  }
+  
+  .line-2 {
+    top: 60%;
+    left: -100%;
+    width: 200%;
+    animation: lineMove 12s linear infinite reverse;
+    animation-delay: -5s;
+  }
+  
+  .line-3 {
+    top: 85%;
+    left: -100%;
+    width: 200%;
+    animation: lineMove 18s linear infinite;
+    animation-delay: -10s;
+  }
+  
+  @keyframes lineMove {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Animation Delays */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-background .w-64,
+    .hero-background .w-72,
+    .hero-background .w-80 {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .particle {
+      width: 2px;
+      height: 2px;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-background * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+</style>

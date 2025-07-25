@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Page Not Found - Jenny Mod"
+  description="The page you're looking for doesn't exist. Return to Jenny Mod homepage for downloads and guides."
+>
+  <Header />
+  
+  <main class="min-h-screen bg-base-100 flex items-center justify-center">
+    <div class="text-center max-w-2xl mx-auto px-4">
+      <div class="mb-8">
+        <h1 class="text-9xl font-black text-primary mb-4">404</h1>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-base-content">
+          Page Not Found
+        </h2>
+        <p class="text-xl text-base-content/80 mb-8">
+          Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+        </p>
+      </div>
+      
+      <div class="space-y-4 mb-12">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/" class="btn btn-primary btn-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+            </svg>
+            Go Home
+          </a>
+          <a href="/how-to-install-jennymod" class="btn btn-outline btn-primary btn-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" clip-rule="evenodd"></path>
+            </svg>
+            Installation Guide
+          </a>
+        </div>
+      </div>
+      
+      <!-- Popular Links -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card bg-base-200 shadow-lg">
+          <div class="card-body text-center">
+            <h3 class="card-title justify-center text-primary">Download Jenny Mod</h3>
+            <p class="text-sm text-base-content/70">Get the latest version</p>
+            <a href="/#download" class="btn btn-primary btn-sm">Download</a>
+          </div>
+        </div>
+        
+        <div class="card bg-base-200 shadow-lg">
+          <div class="card-body text-center">
+            <h3 class="card-title justify-center text-primary">Installation Guide</h3>
+            <p class="text-sm text-base-content/70">Step-by-step instructions</p>
+            <a href="/how-to-install-jennymod" class="btn btn-primary btn-sm">Learn How</a>
+          </div>
+        </div>
+        
+        <div class="card bg-base-200 shadow-lg">
+          <div class="card-body text-center">
+            <h3 class="card-title justify-center text-primary">Server Setup</h3>
+            <p class="text-sm text-base-content/70">Multiplayer configuration</p>
+            <a href="/multiplayer-server" class="btn btn-primary btn-sm">Setup Guide</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

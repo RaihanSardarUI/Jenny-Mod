@@ -1,0 +1,178 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  disabled?: boolean;
+  loading?: boolean;
+  href?: string;
+  target?: string;
+  rel?: string;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  loading = false,
+  href,
+  target,
+  rel,
+  class: className = '',
+  type = 'button'
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class={`btn-modern btn-${variant} btn-${size} ${className} ${disabled || loading ? 'btn-disabled' : ''}`}
+  href={href}
+  target={target}
+  rel={rel}
+  type={!href ? type : undefined}
+  disabled={disabled || loading}
+>
+  {loading && (
+    <svg class="animate-spin w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  )}
+  
+  <slot />
+</Tag>
+
+<style>
+  .btn-modern {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-modern:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+  }
+  
+  .btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  /* Primary Button */
+  .btn-primary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+    color: #000;
+    box-shadow: 0 4px 14px 0 rgba(251, 191, 36, 0.39);
+  }
+  
+  .btn-primary:hover:not(.btn-disabled) {
+    background: linear-gradient(135deg, #fcd34d 0%, #fb923c 100%);
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:active:not(.btn-disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+  }
+  
+  /* Secondary Button */
+  .btn-secondary {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #fff;
+    box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.39);
+  }
+  
+  .btn-secondary:hover:not(.btn-disabled) {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary:active:not(.btn-disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  }
+  
+  /* Outline Button */
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  .btn-outline:hover:not(.btn-disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline:active:not(.btn-disabled) {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Ghost Button */
+  .btn-ghost {
+    background: transparent;
+    color: #d1d5db;
+  }
+  
+  .btn-ghost:hover:not(.btn-disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  
+  /* Danger Button */
+  .btn-danger {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: #fff;
+    box-shadow: 0 4px 14px 0 rgba(220, 38, 38, 0.39);
+  }
+  
+  .btn-danger:hover:not(.btn-disabled) {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  /* Sizes */
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-height: 2rem;
+  }
+  
+  .btn-md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 2.5rem;
+  }
+  
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    min-height: 3rem;
+  }
+  
+  .btn-xl {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.25rem;
+    min-height: 3.5rem;
+  }
+</style>

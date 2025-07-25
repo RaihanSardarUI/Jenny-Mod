@@ -1,0 +1,73 @@
+---
+export interface Props {
+  type?: 'WebSite' | 'Article' | 'SoftwareApplication';
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+}
+
+const { 
+  type = 'WebSite',
+  title,
+  description,
+  url,
+  image = '/images/jenny-mod-og.webp',
+  datePublished,
+  dateModified
+} = Astro.props;
+
+const baseSchema = {
+  "@context": "https://schema.org",
+  "@type": type,
+  "name": title,
+  "description": description,
+  "url": url,
+  "image": new URL(image, Astro.site).toString()
+};
+
+let schema;
+
+if (type === 'WebSite') {
+  schema = baseSchema;
+} else if (type === 'Article') {
+  schema = {
+    ...baseSchema,
+    "author": {
+      "@type": "Organization",
+      "name": "Jenny Mod Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jenny Mod",
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL('/icon/cropped-Jenny-Mod-300x300.webp', Astro.site).toString()
+      }
+    },
+    "datePublished": datePublished,
+    "dateModified": dateModified || datePublished
+  };
+} else if (type === 'SoftwareApplication') {
+  schema = {
+    ...baseSchema,
+    "@type": "SoftwareApplication",
+    "applicationCategory": "Game",
+    "operatingSystem": "Windows, macOS, Linux, Android, iOS",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1250"
+    }
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

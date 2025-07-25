@@ -1,0 +1,116 @@
+---
+import Card from './Card.astro';
+import Button from './Button.astro';
+
+export interface Props {
+  title: string;
+  version: string;
+  size: string;
+  uploadDate?: string;
+  downloadUrl: string;
+  platform: 'java' | 'mcpe';
+  featured?: boolean;
+  description?: string;
+  class?: string;
+}
+
+const {
+  title,
+  version,
+  size,
+  uploadDate,
+  downloadUrl,
+  platform,
+  featured = false,
+  description,
+  class: className = ''
+} = Astro.props;
+
+const platformColors = {
+  java: 'from-orange-500/20 to-red-500/20',
+  mcpe: 'from-green-500/20 to-blue-500/20'
+};
+
+const platformIcons = {
+  java: 'M8 3a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H6a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h2z',
+  mcpe: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'
+};
+---
+
+<Card variant="download" class={`group ${className} ${featured ? 'ring-2 ring-primary/50' : ''}`}>
+  <div class="space-y-4">
+    <!-- Header with Platform Badge -->
+    <div class="flex items-start justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Platform Icon -->
+        <div class={`
+          w-12 h-12 rounded-xl flex items-center justify-center
+          bg-gradient-to-br ${platformColors[platform]}
+          border border-white/20
+        `}>
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d={platformIcons[platform]}></path>
+          </svg>
+        </div>
+        
+        <!-- Title and Platform -->
+        <div>
+          <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors duration-300">
+            {title}
+          </h3>
+          <span class="text-sm text-base-content/60 uppercase tracking-wide">
+            {platform === 'java' ? 'Java Edition' : 'MCPE/Bedrock'}
+          </span>
+        </div>
+      </div>
+      
+      <!-- Featured Badge -->
+      {featured && (
+        <div class="px-2 py-1 bg-gradient-to-r from-primary to-secondary rounded-full">
+          <span class="text-xs font-semibold text-black">FEATURED</span>
+        </div>
+      )}
+    </div>
+    
+    <!-- Version Info -->
+    <div class="grid grid-cols-2 gap-4 py-4 border-y border-white/10">
+      <div class="text-center">
+        <div class="text-2xl font-bold text-primary">{version}</div>
+        <div class="text-xs text-base-content/60">Version</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-secondary">{size}</div>
+        <div class="text-xs text-base-content/60">File Size</div>
+      </div>
+    </div>
+    
+    <!-- Description -->
+    {description && (
+      <p class="text-sm text-base-content/80 leading-relaxed">
+        {description}
+      </p>
+    )}
+    
+    <!-- Upload Date -->
+    {uploadDate && (
+      <div class="text-xs text-base-content/60">
+        Updated: {uploadDate}
+      </div>
+    )}
+    
+
+    
+    <!-- Security Badge -->
+    <div class="flex items-center justify-center space-x-2 text-xs text-green-400">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+      </svg>
+      <span>Virus Scanned & Safe</span>
+    </div>
+  </div>
+  
+  <!-- Animated Background -->
+  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+  </div>
+</Card>

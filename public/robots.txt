@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jennymod.dev/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Block access to admin areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /cgi-bin/
+Disallow: /search
+Disallow: /?s=
+Disallow: /author/
+
+# Allow all important pages
+Allow: /
+Allow: /how-to-install-jennymod
+Allow: /download-java
+Allow: /mcpe
+Allow: /privacy-policy
+Allow: /terms-and-conditions
+Allow: /disclaimer
+Allow: /cookie-policy

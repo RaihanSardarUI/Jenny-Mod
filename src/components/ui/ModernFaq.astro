@@ -1,0 +1,223 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  items: FaqItem[];
+  class?: string;
+}
+
+const { 
+  title = "Frequently Asked Questions",
+  subtitle = "Find answers to common questions about Jenny Mod",
+  items,
+  class: className = ""
+} = Astro.props;
+---
+
+<section class={`py-20 ${className}`}>
+  <div class="container mx-auto px-4 max-w-5xl">
+    <!-- Header -->
+    <div class="text-center mb-16 animate-slide-up">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+        {title}
+      </h2>
+      <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- FAQ List -->
+    <div class="space-y-4 max-w-4xl mx-auto">
+      {items.map((item, index) => (
+        <div 
+          class={`faq-card group animate-slide-up animate-delay-${(index + 1) * 100}`}
+          data-faq-index={index}
+        >
+          <!-- Question Card -->
+          <div class="bg-gradient-to-br from-base-200/80 to-base-300/40 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30">
+            <button 
+              class="faq-trigger w-full text-left p-5 flex items-center justify-between gap-4 group-hover:bg-white/5 transition-all duration-300"
+              aria-expanded="false"
+            >
+              <div class="flex-1">
+                <h3 class="text-base md:text-lg font-semibold text-base-content group-hover:text-primary transition-colors duration-300 leading-relaxed">
+                  {item.question}
+                </h3>
+              </div>
+              
+              <!-- Animated Icon -->
+              <div class="flex-shrink-0">
+                <div class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                  <svg 
+                    class="faq-icon w-4 h-4 text-primary transform transition-transform duration-300 ease-out" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
+            
+            <!-- Answer Panel -->
+            <div class="faq-answer overflow-hidden transition-all duration-500 ease-out max-h-0">
+              <div class="px-5 pb-5">
+                <div class="pt-4 border-t border-white/10">
+                  <div class="prose prose-sm max-w-none text-base-content/80 leading-relaxed">
+                    <p set:html={item.answer}></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Help Section -->
+    <div class="mt-16 text-center animate-slide-up animate-delay-600">
+      <div class="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-3xl p-8 border border-white/10">
+        <div class="max-w-2xl mx-auto">
+          <h3 class="text-2xl font-bold text-base-content mb-4">
+            Still have questions?
+          </h3>
+          <p class="text-base-content/70 mb-6">
+            Can't find the answer you're looking for? Feel free to reach out to our community or check our detailed installation guides.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/how-to-install-jennymod" 
+              class="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+              Installation Guide
+            </a>
+            <a 
+              href="/download-java" 
+              class="btn btn-outline btn-lg hover:btn-secondary transition-all duration-300"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              Download Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqCards = document.querySelectorAll('.faq-card');
+    
+    faqCards.forEach(card => {
+      const trigger = card.querySelector('.faq-trigger');
+      const answer = card.querySelector('.faq-answer');
+      const icon = card.querySelector('.faq-icon');
+      
+      if (!trigger || !answer || !icon) return;
+      
+      trigger.addEventListener('click', () => {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other FAQ items with smooth animation
+        faqCards.forEach(otherCard => {
+          if (otherCard !== card) {
+            const otherTrigger = otherCard.querySelector('.faq-trigger');
+            const otherAnswer = otherCard.querySelector('.faq-answer');
+            const otherIcon = otherCard.querySelector('.faq-icon');
+            
+            if (otherTrigger && otherAnswer && otherIcon) {
+              otherTrigger.setAttribute('aria-expanded', 'false');
+              otherAnswer.style.maxHeight = '0px';
+              otherIcon.style.transform = 'rotate(0deg)';
+              otherCard.classList.remove('faq-active');
+            }
+          }
+        });
+        
+        // Toggle current item with enhanced animations
+        if (isOpen) {
+          trigger.setAttribute('aria-expanded', 'false');
+          answer.style.maxHeight = '0px';
+          icon.style.transform = 'rotate(0deg)';
+          card.classList.remove('faq-active');
+        } else {
+          trigger.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          icon.style.transform = 'rotate(45deg)';
+          card.classList.add('faq-active');
+          
+          // Smooth scroll to the opened FAQ item
+          setTimeout(() => {
+            card.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'nearest' 
+            });
+          }, 100);
+        }
+      });
+    });
+    
+    // Add keyboard navigation
+    faqCards.forEach(card => {
+      const trigger = card.querySelector('.faq-trigger');
+      
+      if (trigger) {
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            trigger.click();
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq-card.faq-active .faq-trigger {
+    @apply bg-white/10;
+  }
+  
+  .faq-card.faq-active {
+    @apply ring-2 ring-primary/30;
+  }
+  
+  .faq-answer {
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .faq-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Hover effects */
+  .faq-card:hover {
+    @apply transform scale-[1.02];
+  }
+  
+  /* Focus styles for accessibility */
+  .faq-trigger:focus {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-base-100;
+  }
+  
+  /* Animation delays */
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
+  .animate-delay-600 { animation-delay: 0.6s; }
+</style>

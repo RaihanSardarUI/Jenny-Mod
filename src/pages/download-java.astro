@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DownloadList from '../components/ui/DownloadList.astro';
+
+// Fapcraft Downloads (Latest & Best)
+const fapcraftDownloads = [
+  {
+    id: 'jenny-mod-fapcraft-1-1',
+    version: 'Fapcraft v1.1 (Latest)',
+    size: '43.7 MB',
+    uploadDate: '8th Apr 2025',
+    downloadUrl: 'https://github.com/ZellRaihan/Jenny-Mod/releases/download/publish/Fapcraft.1.12.2.v1.1.jar',
+    isRecommended: true,
+    colorTheme: 'green' as const
+  },
+  {
+    id: 'jenny-mod-fapcraft-1-0',
+    version: 'Fapcraft v1.0',
+    size: '42.3 MB',
+    uploadDate: '25th Sep 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Fapcraft.-.1.12.2.-.v.1.0.jar',
+    colorTheme: 'blue' as const
+  }
+];
+
+// Forge Downloads (Older Versions)
+const forgeDownloads = [
+  {
+    id: 'jenny-mod-forge-1-9-0',
+    version: 'Forge v1.9.0',
+    size: '42.57 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.9.0.jar',
+    colorTheme: 'yellow' as const
+  },
+  {
+    id: 'jenny-mod-forge-1-8-0',
+    version: 'Forge v1.8.0',
+    size: '42.15 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.8.0.jar',
+    colorTheme: 'orange' as const
+  },
+  {
+    id: 'jenny-mod-forge-1-7-5',
+    version: 'Forge v1.7.5',
+    size: '42.14 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.7.5.jar',
+    colorTheme: 'lime' as const
+  },
+  {
+    id: 'jenny-mod-forge-1-7-4',
+    version: 'Forge v1.7.4',
+    size: '42.14 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.7.4.jar',
+    colorTheme: 'purple' as const
+  },
+  {
+    id: 'jenny-mod-forge-1-7-3',
+    version: 'Forge v1.7.3',
+    size: '42.14 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.7.3.jar',
+    colorTheme: 'pink' as const
+  },
+  {
+    id: 'jenny-mod-forge-1-6-9',
+    version: 'Forge v1.6.9',
+    size: '81.31 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.6.9.jar',
+    colorTheme: 'cyan' as const
+  },
+  {
+    id: 'jenny-mod-forge-1-6-8',
+    version: 'Forge v1.6.8',
+    size: '94.75 MB',
+    uploadDate: '13th Jan 2023',
+    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.6.8.jar',
+    colorTheme: 'blue' as const
+  }
+];
+---
+
+<Layout 
+  title="Download Jenny Mod Java Edition - All Versions Available"
+  description="Download Jenny Mod for Minecraft Java Edition. Multiple versions available including Fapcraft version. Free download with installation guide."
+  keywords="Jenny Mod Java, Download Jenny Mod, Minecraft Java Edition, Fapcraft, Jenny Mod versions"
+>
+  <Header />
+  
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-base-200 via-base-100 to-base-200">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-12 animate-slide-up">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            Download Jenny Mod
+          </h1>
+          <p class="text-xl text-base-content/80 max-w-3xl mx-auto mb-8">
+            Get the latest Jenny Mod for Minecraft Java Edition. Multiple versions available including Fapcraft edition.
+          </p>
+          <a href="/" class="btn btn-outline btn-primary">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg>
+            Back To Home
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fapcraft Downloads Section (Latest & Best) -->
+    <section class="py-16 bg-base-100">
+      <div class="container mx-auto px-4">
+        <DownloadList
+          title="Fapcraft Version (Recommended)"
+          subtitle="The latest and most feature-rich version of Jenny Mod with enhanced content and improved performance."
+          downloads={fapcraftDownloads}
+        />
+      </div>
+    </section>
+
+    <!-- Forge Downloads Section (Older Versions) -->
+    <section class="py-16 bg-base-200">
+      <div class="container mx-auto px-4">
+        <DownloadList
+          title="Forge Versions (Legacy)"
+          subtitle="Older stable versions of Jenny Mod for users who prefer classic builds or have compatibility requirements."
+          downloads={forgeDownloads}
+        />
+      </div>
+    </section>
+
+    <!-- Installation Guide Link -->
+    <section class="py-16 bg-base-200">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-2xl mx-auto animate-slide-up">
+          <div class="bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-3xl p-8 border border-white/10">
+            <h2 class="text-2xl font-bold mb-4 text-primary">Need Help Installing?</h2>
+            <p class="text-base-content/80 mb-6">
+              Check out our detailed installation guide for step-by-step instructions on how to install Jenny Mod for Java Edition.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/how-to-install-jennymod" class="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                Installation Guide
+              </a>
+              <a href="/mcpe" class="btn btn-outline btn-secondary btn-lg hover:btn-secondary transition-all duration-300">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
+                </svg>
+                MCPE Version
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

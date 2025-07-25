@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const { 
+  title, 
+  description = "Download Jenny Mod for Your Minecraft Java and MCPE Edition. Here Also You Can Download Jenny Mod Fapcraft Version. Visit Now!",
+  keywords = "Jenny Mod, Minecraft, MCPE, Java Edition, Fapcraft, Download",
+  ogImage = "/screenshots/Jenny-Mod-Thumbnail.webp",
+  canonical
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-theme="jennymod" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon and Icons - Using proper favicon folder -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#efc902" />
+    <meta name="theme-color" content="#efc902" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Jenny Mod",
+        "alternateName": "Jenny Mod Official",
+        "url": "https://jennymod.dev",
+        "description": "Download Jenny Mod for Your Minecraft Java and MCPE Edition. Here Also You Can Download Jenny Mod Fapcraft Version. Visit Now!",
+        "keywords": "Jenny Mod, Minecraft, MCPE, Java Edition, Fapcraft, Download, 1.12.2",
+        "inLanguage": "en-US",
+        "copyrightYear": "2025",
+        "author": {
+          "@type": "Organization",
+          "name": "Jenny Mod Dev Team"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Jenny Mod",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://jennymod.dev/icon/cropped-Jenny-Mod-300x300.webp",
+            "width": 300,
+            "height": 300
+          }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://jennymod.dev/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen antialiased">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse animation-delay-4000"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+</style>

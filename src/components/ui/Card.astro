@@ -1,0 +1,116 @@
+---
+export interface Props {
+  variant?: 'default' | 'feature' | 'download' | 'blog' | 'glass';
+  hover?: boolean;
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+  gradient?: boolean;
+  glow?: boolean;
+}
+
+const {
+  variant = 'default',
+  hover = true,
+  padding = 'md',
+  class: className = '',
+  gradient = false,
+  glow = false
+} = Astro.props;
+
+const baseClasses = `
+  relative overflow-hidden rounded-2xl
+  transition-all duration-300 ease-out
+  border border-white/10
+`;
+
+const variantClasses = {
+  default: `
+    bg-white/5 backdrop-blur-xl
+    ${hover ? 'hover:bg-white/10 hover:scale-[1.02] hover:shadow-2xl' : ''}
+  `,
+  feature: `
+    bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl
+    ${hover ? 'hover:from-white/15 hover:to-white/10 hover:scale-105 hover:shadow-2xl group' : ''}
+  `,
+  download: `
+    bg-white/5 backdrop-blur-xl border-primary/20
+    ${hover ? 'hover:bg-white/10 hover:scale-105 hover:shadow-2xl hover:border-primary/40' : ''}
+  `,
+  blog: `
+    bg-white/5 backdrop-blur-xl
+    ${hover ? 'hover:bg-white/10 hover:scale-[1.02] hover:shadow-2xl' : ''}
+  `,
+  glass: `
+    bg-white/10 backdrop-blur-xl border-white/20
+    ${hover ? 'hover:bg-white/15 hover:scale-[1.02] hover:shadow-2xl' : ''}
+  `
+};
+
+const paddingClasses = {
+  none: '',
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8',
+  xl: 'p-10'
+};
+
+const classes = `
+  ${baseClasses}
+  ${variantClasses[variant]}
+  ${paddingClasses[padding]}
+  ${gradient ? 'bg-gradient-to-br from-primary/10 via-transparent to-secondary/10' : ''}
+  ${glow ? 'shadow-glow-primary' : ''}
+  ${className}
+`.trim().replace(/\s+/g, ' ');
+---
+
+<div class={classes}>
+  <!-- Gradient Overlay for Feature Cards -->
+  {variant === 'feature' && (
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  )}
+  
+  <!-- Glow Effect -->
+  {glow && (
+    <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+  )}
+  
+  <!-- Content -->
+  <div class="relative z-10">
+    <slot />
+  </div>
+  
+  <!-- Shine Effect -->
+  {hover && (
+    <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500">
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full hover:translate-x-full transition-transform duration-1000"></div>
+    </div>
+  )}
+</div>
+
+<style>
+  /* Custom card animations */
+  .card-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .card-glow {
+    position: relative;
+  }
+  
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--primary-400), var(--secondary-400), var(--accent-400));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    filter: blur(10px);
+  }
+  
+  .card-glow:hover::before {
+    opacity: 0.3;
+  }
+</style>
