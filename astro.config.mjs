@@ -15,5 +15,24 @@ export default defineConfig({
       lastmod: new Date(),
     })
   ],
-  output: 'static'
+  output: 'static',
+  build: {
+    inlineStylesheets: 'auto',
+    assets: '_astro'
+  },
+  vite: {
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+              return '_astro/[name].[hash][extname]';
+            }
+            return '_astro/[name].[hash][extname]';
+          }
+        }
+      }
+    }
+  }
 });
