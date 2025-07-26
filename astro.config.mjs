@@ -17,7 +17,7 @@ export default defineConfig({
   ],
   output: 'static',
   build: {
-    inlineStylesheets: 'always', // Inline critical CSS
+    inlineStylesheets: 'never', // Keep CSS in separate files
     assets: '_astro'
   },
   vite: {
