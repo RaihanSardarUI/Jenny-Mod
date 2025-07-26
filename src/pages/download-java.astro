@@ -4,87 +4,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DownloadList from '../components/ui/DownloadList.astro';
 import { SITE_CONFIG } from '../config/domain.js';
+import { getAllDownloads } from '../config/downloads.js';
 
-// Fapcraft Downloads (Latest & Best)
-const fapcraftDownloads = [
-  {
-    id: 'jenny-mod-fapcraft-1-1',
-    version: 'Fapcraft v1.1 (Latest)',
-    size: '43.7 MB',
-    uploadDate: '8th Apr 2025',
-    downloadUrl: 'https://github.com/ZellRaihan/Jenny-Mod/releases/download/publish/Fapcraft.1.12.2.v1.1.jar',
-    isRecommended: true,
-    colorTheme: 'green' as const
-  },
-  {
-    id: 'jenny-mod-fapcraft-1-0',
-    version: 'Fapcraft v1.0',
-    size: '42.3 MB',
-    uploadDate: '25th Sep 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Fapcraft.-.1.12.2.-.v.1.0.jar',
-    colorTheme: 'blue' as const
-  }
-];
-
-// Forge Downloads (Older Versions)
-const forgeDownloads = [
-  {
-    id: 'jenny-mod-forge-1-9-0',
-    version: 'Forge v1.9.0',
-    size: '42.57 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.9.0.jar',
-    colorTheme: 'yellow' as const
-  },
-  {
-    id: 'jenny-mod-forge-1-8-0',
-    version: 'Forge v1.8.0',
-    size: '42.15 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.8.0.jar',
-    colorTheme: 'orange' as const
-  },
-  {
-    id: 'jenny-mod-forge-1-7-5',
-    version: 'Forge v1.7.5',
-    size: '42.14 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.7.5.jar',
-    colorTheme: 'lime' as const
-  },
-  {
-    id: 'jenny-mod-forge-1-7-4',
-    version: 'Forge v1.7.4',
-    size: '42.14 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.7.4.jar',
-    colorTheme: 'purple' as const
-  },
-  {
-    id: 'jenny-mod-forge-1-7-3',
-    version: 'Forge v1.7.3',
-    size: '42.14 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.7.3.jar',
-    colorTheme: 'pink' as const
-  },
-  {
-    id: 'jenny-mod-forge-1-6-9',
-    version: 'Forge v1.6.9',
-    size: '81.31 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.6.9.jar',
-    colorTheme: 'cyan' as const
-  },
-  {
-    id: 'jenny-mod-forge-1-6-8',
-    version: 'Forge v1.6.8',
-    size: '94.75 MB',
-    uploadDate: '13th Jan 2023',
-    downloadUrl: 'https://github.com/GBWhatsPro/Jenny-Mod/releases/download/publish/Jenny-Mod-Forge-1.12.2-v1.6.8.jar',
-    colorTheme: 'blue' as const
-  }
-];
+// Get downloads from centralized configuration
+const { fapcraft: fapcraftDownloads, forge: forgeDownloads } = getAllDownloads();
 ---
 
 <Layout 

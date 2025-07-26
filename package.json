@@ -13,7 +13,10 @@
     "generate:seo": "npm run generate:sitemap && npm run generate:robots",
     "verify:domain": "node scripts/verify-domain-centralization.js",
     "update:domain": "node scripts/update-domain.js",
-    "test:domain": "node scripts/test-domain-centralization.js"
+    "test:domain": "node scripts/test-domain-centralization.js",
+    "downloads:validate": "node scripts/manage-downloads.js validate",
+    "downloads:summary": "node scripts/manage-downloads.js summary",
+    "downloads:add": "node scripts/manage-downloads.js add"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.1.0",
