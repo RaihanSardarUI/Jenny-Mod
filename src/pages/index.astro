@@ -8,6 +8,7 @@ import DownloadCard from '../components/ui/DownloadCard.astro';
 import Card from '../components/ui/Card.astro';
 import Button from '../components/ui/Button.astro';
 import ModernFaq from '../components/ui/ModernFaq.astro';
+import TableOfContents from '../components/ui/TableOfContents.astro';
 import { SITE_CONFIG } from '../config/domain.js';
 
 // FAQ data for schema generation
@@ -79,6 +80,9 @@ const faqItems = [
       heroImage="/icon/cropped-Jenny-Mod-300x300.webp"
     />
 
+    <!-- Table of Contents -->
+    <TableOfContents />
+
     <!-- Main Content Section -->
     <section class="py-16 bg-base-100">
       <div class="container mx-auto px-4 max-w-4xl">
@@ -92,7 +96,7 @@ const faqItems = [
 
         <!-- What Is Jenny Mod Section -->
         <section class="mb-16 animate-slide-up animate-delay-200">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="what-is-jenny-mod" class="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             What Is Jenny Mod?
           </h2>
           
@@ -120,7 +124,7 @@ const faqItems = [
 
         <!-- Who is Jenny Section -->
         <section class="mb-16 animate-slide-up animate-delay-400">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="who-is-jenny" class="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Who is Jenny?
           </h2>
           
@@ -151,7 +155,7 @@ const faqItems = [
     <section class="py-20 bg-base-200">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-slide-up">
-          <h2 class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="special-features" class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Special Features of Jenny Mod
           </h2>
           <p class="text-xl text-base-content/80 max-w-3xl mx-auto">
@@ -203,7 +207,7 @@ const faqItems = [
     <section class="py-16 bg-base-100">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-12 animate-slide-up">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="virtual-characters" class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Beside Virtual Characters Like Jenny
           </h2>
           <p class="text-lg text-base-content/90">
@@ -236,7 +240,7 @@ const faqItems = [
     <section id="dn" class="py-20 bg-base-200">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-slide-up">
-          <h2 class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="download" class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Download
           </h2>
           <p class="text-xl text-base-content/80 max-w-3xl mx-auto">
@@ -357,7 +361,7 @@ const faqItems = [
     <section class="py-16 bg-base-100">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12 animate-slide-up">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="screenshots" class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Screenshots
           </h2>
           <p class="text-lg text-base-content/80 max-w-3xl mx-auto">
@@ -389,7 +393,7 @@ const faqItems = [
     <section class="py-16 bg-base-200">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-12 animate-slide-up">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="how-to-download" class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             How To Download Jenny Mod For Minecraft?
           </h2>
           <p class="text-lg text-base-content/90 mb-8">
@@ -459,7 +463,7 @@ const faqItems = [
     <section class="py-16 bg-base-100">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-12 animate-slide-up">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="how-to-install" class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             How To Install Jenny Mod In Minecraft?
           </h2>
         </div>
@@ -522,7 +526,7 @@ const faqItems = [
     <section class="py-16 bg-base-200">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-12 animate-slide-up">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="requirements" class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Requirements of Jenny Mod
           </h2>
           <p class="text-lg text-base-content/90">
@@ -580,7 +584,7 @@ const faqItems = [
     <section class="py-16 bg-base-100">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-12 animate-slide-up">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 id="conclusion" class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Conclusion
           </h2>
         </div>

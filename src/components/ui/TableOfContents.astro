@@ -1,0 +1,216 @@
+---
+interface TocItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
+interface Props {
+  title?: string;
+  class?: string;
+}
+
+const { 
+  title = "Table of Contents",
+  class: className = ""
+} = Astro.props;
+---
+
+<section class={`py-12 bg-base-200/50 ${className}`} id="table-of-contents">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:from-white/15 hover:to-white/10 transition-all duration-300">
+      <!-- TOC Header -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+          </svg>
+        </div>
+        <h2 class="text-xl font-heading font-semibold text-white">
+          {title}
+        </h2>
+      </div>
+      
+      <!-- TOC List Container -->
+      <nav class="toc-nav" aria-label="Table of contents">
+        <ul class="toc-list space-y-2" id="toc-list">
+          <!-- TOC items will be populated by JavaScript -->
+        </ul>
+      </nav>
+      
+      <!-- Loading state -->
+      <div class="toc-loading text-gray-400 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+          Generating table of contents...
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tocList = document.getElementById('toc-list');
+    const tocLoading = document.querySelector('.toc-loading');
+    
+    if (!tocList || !tocLoading) return;
+    
+    // Find all H2 headings in the main content
+    const headings = document.querySelectorAll('main h2');
+    
+    if (headings.length === 0) {
+      tocLoading.innerHTML = '<p class="text-gray-400 text-sm">No headings found</p>';
+      return;
+    }
+    
+    // Generate TOC items
+    const tocItems = [];
+    headings.forEach((heading, index) => {
+      // Create ID if it doesn't exist
+      if (!heading.id) {
+        const id = heading.textContent
+          ?.toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .trim() || `heading-${index}`;
+        heading.id = id;
+      }
+      
+      tocItems.push({
+        id: heading.id,
+        text: heading.textContent?.trim() || '',
+        element: heading
+      });
+    });
+    
+    // Build TOC HTML
+    const tocHTML = tocItems.map((item, index) => `
+      <li class="toc-item">
+        <a 
+          href="#${item.id}" 
+          class="toc-link flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 group"
+          data-target="${item.id}"
+        >
+          <span class="toc-number w-6 h-6 rounded-full bg-primary/20 text-primary text-xs font-semibold flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+            ${index + 1}
+          </span>
+          <span class="toc-text flex-1">${item.text}</span>
+          <svg class="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </li>
+    `).join('');
+    
+    // Update TOC
+    tocList.innerHTML = tocHTML;
+    tocLoading.style.display = 'none';
+    
+    // Add smooth scrolling and active state tracking
+    const tocLinks = document.querySelectorAll('.toc-link');
+    
+    // Smooth scroll on click
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          // Remove active state from all links
+          tocLinks.forEach(l => l.classList.remove('toc-active'));
+          // Add active state to clicked link
+          link.classList.add('toc-active');
+          
+          // Smooth scroll to target
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Update URL hash
+          history.pushState(null, null, `#${targetId}`);
+        }
+      });
+    });
+    
+    // Track scroll position and highlight active section
+    const observerOptions = {
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const tocLink = document.querySelector(`[data-target="${id}"]`);
+        
+        if (entry.isIntersecting) {
+          // Remove active from all
+          tocLinks.forEach(l => l.classList.remove('toc-active'));
+          // Add active to current
+          if (tocLink) {
+            tocLink.classList.add('toc-active');
+          }
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all headings
+    tocItems.forEach(item => {
+      observer.observe(item.element);
+    });
+    
+    // Handle initial hash in URL
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const targetLink = document.querySelector(`[data-target="${targetId}"]`);
+      if (targetLink) {
+        setTimeout(() => {
+          tocLinks.forEach(l => l.classList.remove('toc-active'));
+          targetLink.classList.add('toc-active');
+        }, 100);
+      }
+    }
+  });
+</script>
+
+<style>
+  .toc-active {
+    @apply bg-primary/20 text-white border-l-4 border-primary;
+  }
+  
+  .toc-active .toc-number {
+    @apply bg-primary text-black;
+  }
+  
+  .toc-active .toc-text {
+    @apply font-medium;
+  }
+  
+  .toc-link:hover {
+    @apply transform translate-x-1;
+  }
+  
+  /* Smooth transitions */
+  .toc-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .toc-link {
+      @apply p-2;
+    }
+    
+    .toc-number {
+      @apply w-5 h-5 text-xs;
+    }
+    
+    .toc-text {
+      @apply text-sm;
+    }
+  }
+</style>
