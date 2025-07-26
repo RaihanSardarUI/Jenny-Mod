@@ -37,7 +37,7 @@
 
   /* Navigation Links */
   .nav-link {
-    @apply relative text-gray-300 hover:text-white transition-all duration-300 font-medium;
+    @apply relative text-gray-200 hover:text-white transition-all duration-300 font-medium;
   }
 
   .nav-link::after {
@@ -50,7 +50,7 @@
   }
 
   .mobile-nav-link {
-    @apply block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300;
+    @apply block px-4 py-3 text-gray-200 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300;
   }
 
   /* Custom Buttons - Removed to prevent conflicts with Button component */
@@ -111,7 +111,38 @@
 
   /* Footer Links */
   .footer-link {
-    @apply text-gray-400 hover:text-white transition-colors duration-300;
+    @apply text-gray-300 hover:text-white transition-colors duration-300;
+  }
+
+  /* Accessible Links */
+  .link-primary {
+    @apply text-yellow-300 hover:text-yellow-200 underline decoration-2 underline-offset-2 hover:decoration-yellow-200 transition-all duration-300;
+  }
+
+  .link-secondary {
+    @apply text-blue-300 hover:text-blue-200 underline decoration-2 underline-offset-2 hover:decoration-blue-200 transition-all duration-300;
+  }
+
+  /* Better contrast for muted text */
+  .text-muted {
+    @apply text-gray-300;
+  }
+
+  .text-subtle {
+    @apply text-gray-400;
+  }
+
+  /* High contrast text utilities */
+  .text-high-contrast {
+    @apply text-white;
+  }
+
+  .text-medium-contrast {
+    @apply text-gray-200;
+  }
+
+  .text-low-contrast {
+    @apply text-gray-300;
   }
 
   /* Table Styles */

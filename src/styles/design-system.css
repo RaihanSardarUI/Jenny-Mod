@@ -54,6 +54,12 @@
   --neutral-800: #262626;
   --neutral-900: #171717;
 
+  /* Accessible text colors for better contrast */
+  --text-primary: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-muted: #a3a3a3;
+  --text-subtle: #737373;
+
   /* Dark Theme Colors */
   --dark-50: #18181b;
   --dark-100: #27272a;

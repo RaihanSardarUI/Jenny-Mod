@@ -50,6 +50,7 @@ export default {
           "base-100": "#1a1a1a",
           "base-200": "#2a2a2a",
           "base-300": "#3a3a3a",
+          "base-content": "#ffffff",
           "info": "#3abff8",
           "success": "#36d399",
           "warning": "#fbbd23",
