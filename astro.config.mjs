@@ -17,22 +17,27 @@ export default defineConfig({
   ],
   output: 'static',
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always', // Inline critical CSS
     assets: '_astro'
   },
   vite: {
     build: {
-      cssCodeSplit: true,
+      cssCodeSplit: false, // Bundle CSS to reduce requests
       rollupOptions: {
         output: {
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-              return '_astro/[name].[hash][extname]';
+          manualChunks: (id) => {
+            // Bundle node_modules into vendor chunk
+            if (id.includes('node_modules')) {
+              return 'vendor';
             }
-            return '_astro/[name].[hash][extname]';
-          }
+          },
+          assetFileNames: '_astro/[name].[hash][extname]',
+          chunkFileNames: '_astro/[name].[hash].js',
+          entryFileNames: '_astro/[name].[hash].js'
         }
-      }
+      },
+      target: 'es2020',
+      minify: 'esbuild' // Use esbuild instead of terser for faster builds
     }
   }
 });
