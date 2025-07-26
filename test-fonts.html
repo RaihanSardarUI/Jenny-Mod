@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-section">
+        <h1 class="space-grotesk">Space Grotesk Heading Test</h1>
+        <p class="inter">This is Inter body text for comparison.</p>
+        
+        <h2 class="space-grotesk">Space Grotesk H2 - Weight 600</h2>
+        <h3 class="space-grotesk">Space Grotesk H3 - Weight 500</h3>
+        <h4 class="space-grotesk">Space Grotesk H4 - Weight 400</h4>
+        
+        <p class="space-grotesk">Space Grotesk paragraph text to see how it looks in body content.</p>
+        
+        <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; margin: 10px 0;">
+            Space Grotesk Bold (700)
+        </div>
+        
+        <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 20px; margin: 10px 0;">
+            Space Grotesk Semibold (600)
+        </div>
+        
+        <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 18px; margin: 10px 0;">
+            Space Grotesk Medium (500)
+        </div>
+        
+        <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 16px; margin: 10px 0;">
+            Space Grotesk Regular (400)
+        </div>
+    </div>
+    
+    <script>
+        // Check if fonts are loaded
+        document.fonts.ready.then(() => {
+            console.log('All fonts loaded successfully!');
+            
+            // Check specific fonts
+            const interLoaded = document.fonts.check('16px Inter');
+            const spaceGroteskLoaded = document.fonts.check('16px "Space Grotesk"');
+            
+            console.log('Inter loaded:', interLoaded);
+            console.log('Space Grotesk loaded:', spaceGroteskLoaded);
+            
+            if (!spaceGroteskLoaded) {
+                document.body.innerHTML += '<div style="color: red; font-size: 20px; margin: 20px 0;">❌ Space Grotesk failed to load!</div>';
+            } else {
+                document.body.innerHTML += '<div style="color: green; font-size: 20px; margin: 20px 0;">✅ Space Grotesk loaded successfully!</div>';
+            }
+        });
+    </script>
+</body>
+</html>
