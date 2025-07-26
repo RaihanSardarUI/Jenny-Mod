@@ -64,7 +64,7 @@ const faqItems = [
       description=""
       primaryCTA={{
         text: "Download Now",
-        href: "#dn"
+        href: "#download"
       }}
       secondaryCTA={{
         text: "View Guide",
@@ -237,7 +237,7 @@ const faqItems = [
     </section>
 
     <!-- Download Section -->
-    <section id="dn" class="py-20 bg-base-200">
+    <section id="download" class="py-20 bg-base-200">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-slide-up">
           <h2 id="download" class="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -328,12 +328,13 @@ const faqItems = [
           <p class="text-base-content/80 mb-8">
             Choose your platform and start downloading Jenny Mod instantly!
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+          <div id="download-buttons" class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <Button
               href="/download-java/"
               variant="primary"
               size="lg"
-              class="flex-1 shadow-lg hover:shadow-xl"
+              class="flex-1 shadow-lg hover:shadow-xl download-button-highlight"
+              id="java-download-btn"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -344,7 +345,8 @@ const faqItems = [
               href="/mcpe"
               variant="secondary"
               size="lg"
-              class="flex-1 shadow-lg hover:shadow-xl"
+              class="flex-1 shadow-lg hover:shadow-xl download-button-highlight"
+              id="mcpe-download-btn"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
