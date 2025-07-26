@@ -9,12 +9,49 @@ import Card from '../components/ui/Card.astro';
 import Button from '../components/ui/Button.astro';
 import ModernFaq from '../components/ui/ModernFaq.astro';
 import { SITE_CONFIG } from '../config/domain.js';
+
+// FAQ data for schema generation
+const faqItems = [
+  {
+    question: "Can I use Jenny Mod in multiplayer mode?",
+    answer: "Yes, Jenny Mod works perfectly in both single-player and multiplayer modes. All players in the server need to have the mod installed for the best experience."
+  },
+  {
+    question: "Is Jenny Mod compatible with all Minecraft versions?",
+    answer: "Jenny Mod is specifically designed for Minecraft 1.12.2 for Java Edition and 1.17.0 - 1.21.71 for MCPE/Bedrock Edition. Make sure you're using the correct version for compatibility."
+  },
+  {
+    question: "Is it safe to download and use Jenny Mod?",
+    answer: `Yes, Jenny Mod is completely safe when downloaded from our official website. Always download from trusted sources like ${SITE_CONFIG.domain} to avoid malicious files and ensure your device's security.`
+  },
+  {
+    question: "Can I download Jenny Mod for free?",
+    answer: "Absolutely! Jenny Mod is completely free to download and use. We provide the latest versions at no cost to our community. No hidden fees or premium subscriptions required."
+  },
+  {
+    question: "Do I need Minecraft Forge to install Jenny Mod?",
+    answer: "Yes, Minecraft Forge is required for Java Edition. For MCPE/Bedrock, you don't need Forge. Make sure to install the correct Forge version (1.12.2) before installing Jenny Mod."
+  },
+  {
+    question: "What characters are available in Jenny Mod?",
+    answer: "Jenny Mod includes multiple characters: Jenny, Ellie, Bee, Luna, Slime Girl, Allie, Kobolds, and Goblins. Each character has unique features and interactions you can enjoy in your Minecraft world."
+  },
+  {
+    question: "How do I spawn Jenny in my Minecraft world?",
+    answer: "After installing the mod, go to your inventory and look for the special spawn egg. Use this egg to summon Jenny or other characters into your world. You can also use creative mode for easier access."
+  },
+  {
+    question: "Can I customize Jenny's appearance?",
+    answer: "Yes! One of Jenny Mod's best features is customization. You can change Jenny's hair, clothes, skin color, and other appearance aspects to match your preferences."
+  }
+];
 ---
 
 <Layout 
   title="Jenny Mod (1.12.2) For Minecraft (Java & MCPE) Official"
   description="Download Jenny Mod for Your Minecraft Java and MCPE Edition. Here Also You Can Download Jenny Mod Fapcraft Version. Visit Now!"
   keywords="Jenny Mod, Minecraft, MCPE, Java Edition, Fapcraft, Download, 1.12.2"
+  faqItems={faqItems}
 >
   <Header />
   
@@ -527,40 +564,16 @@ import { SITE_CONFIG } from '../config/domain.js';
       title="Frequently Asked Questions"
       subtitle="Everything you need to know about Jenny Mod installation, compatibility, and features"
       class="bg-base-100"
-      items={[
-        {
-          question: "Can I use Jenny Mod in multiplayer mode?",
-          answer: "Yes, Jenny Mod works perfectly in both single-player and multiplayer modes. All players in the server need to have the mod installed for the best experience."
-        },
-        {
-          question: "Is Jenny Mod compatible with all Minecraft versions?",
-          answer: "Jenny Mod is specifically designed for <strong>Minecraft 1.12.2</strong> for Java Edition and <strong>1.17.0 - 1.21.71</strong> for MCPE/Bedrock Edition. Make sure you're using the correct version for compatibility."
-        },
-        {
-          question: "Is it safe to download and use Jenny Mod?",
-          answer: `Yes, Jenny Mod is completely safe when downloaded from our official website. Always download from trusted sources like <strong>${SITE_CONFIG.domain}</strong> to avoid malicious files and ensure your device's security.`
-        },
-        {
-          question: "Can I download Jenny Mod for free?",
-          answer: "Absolutely! Jenny Mod is completely free to download and use. We provide the latest versions at no cost to our community. No hidden fees or premium subscriptions required."
-        },
-        {
-          question: "Do I need Minecraft Forge to install Jenny Mod?",
-          answer: "Yes, <strong>Minecraft Forge</strong> is required for Java Edition. For MCPE/Bedrock, you don't need Forge. Make sure to install the correct Forge version (1.12.2) before installing Jenny Mod."
-        },
-        {
-          question: "What characters are available in Jenny Mod?",
-          answer: "Jenny Mod includes multiple characters: <strong>Jenny, Ellie, Bee, Luna, Slime Girl, Allie, Kobolds, and Goblins</strong>. Each character has unique features and interactions you can enjoy in your Minecraft world."
-        },
-        {
-          question: "How do I spawn Jenny in my Minecraft world?",
-          answer: "After installing the mod, go to your inventory and look for the special spawn egg. Use this egg to summon Jenny or other characters into your world. You can also use creative mode for easier access."
-        },
-        {
-          question: "Can I customize Jenny's appearance?",
-          answer: "Yes! One of Jenny Mod's best features is customization. You can change Jenny's hair, clothes, skin color, and other appearance aspects to match your preferences."
-        }
-      ]}
+      items={faqItems.map(item => ({
+        ...item,
+        answer: item.answer.includes('<strong>') ? item.answer : item.answer.replace(/Minecraft Forge/g, '<strong>Minecraft Forge</strong>')
+          .replace(/Minecraft 1\.12\.2/g, '<strong>Minecraft 1.12.2</strong>')
+          .replace(/1\.17\.0 - 1\.21\.71/g, '<strong>1.17.0 - 1.21.71</strong>')
+          .replace(/MCPE\/Bedrock Edition/g, '<strong>MCPE/Bedrock Edition</strong>')
+          .replace(/Java Edition/g, '<strong>Java Edition</strong>')
+          .replace(new RegExp(SITE_CONFIG.domain, 'g'), `<strong>${SITE_CONFIG.domain}</strong>`)
+          .replace(/Jenny, Ellie, Bee, Luna, Slime Girl, Allie, Kobolds, and Goblins/g, '<strong>Jenny, Ellie, Bee, Luna, Slime Girl, Allie, Kobolds, and Goblins</strong>')
+      }))}
     />
 
     <!-- Conclusion Section -->
