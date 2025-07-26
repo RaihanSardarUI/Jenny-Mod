@@ -18,7 +18,6 @@ Disallow: /wp-includes/
 Disallow: /wp-content/plugins/
 Disallow: /wp-content/themes/
 Disallow: /cgi-bin/
-Disallow: /search
 Disallow: /?s=
 Disallow: /author/
 

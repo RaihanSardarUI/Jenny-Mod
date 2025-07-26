@@ -3,23 +3,39 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_CONFIG } from '../config/domain.js';
+
+// Set proper HTTP status code for 404
+if (Astro.response) {
+  Astro.response.status = 404;
+}
 ---
 
 <Layout 
-  title="Page Not Found - Jenny Mod"
-  description="The page you're looking for doesn't exist. Return to Jenny Mod homepage for downloads and guides."
+  title="404 - Page Not Found | Jenny Mod"
+  description="The page you're looking for doesn't exist. Return to Jenny Mod homepage for downloads and installation guides."
+  keywords="404, page not found, Jenny Mod, error page"
 >
   <Header />
   
   <main class="min-h-screen bg-base-100 flex items-center justify-center">
     <div class="text-center max-w-2xl mx-auto px-4">
       <div class="mb-8">
-        <h1 class="text-9xl font-black text-primary mb-4">404</h1>
+        <!-- Animated 404 with gradient -->
+        <div class="relative">
+          <h1 class="text-8xl md:text-9xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4 animate-pulse">
+            404
+          </h1>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl -z-10"></div>
+        </div>
+        
         <h2 class="text-3xl md:text-4xl font-bold mb-6 text-base-content">
           Page Not Found
         </h2>
-        <p class="text-xl text-base-content/80 mb-8">
+        <p class="text-xl text-base-content/80 mb-4">
           Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+        </p>
+        <p class="text-lg text-base-content/70 mb-8">
+          Don't worry! You can find what you're looking for using the links below or return to our homepage.
         </p>
       </div>
       
@@ -41,29 +57,73 @@ import { SITE_CONFIG } from '../config/domain.js';
       </div>
       
       <!-- Popular Links -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card bg-base-200 shadow-lg">
-          <div class="card-body text-center">
-            <h3 class="card-title justify-center text-primary">Download Jenny Mod</h3>
-            <p class="text-sm text-base-content/70">Get the latest version</p>
-            <a href="/#download" class="btn btn-primary btn-sm">Download</a>
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-center mb-8 text-base-content">
+          Popular Pages
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="card bg-base-200/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="card-body text-center">
+              <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h4 class="card-title justify-center text-primary text-lg">Download Jenny Mod</h4>
+              <p class="text-sm text-base-content/70 mb-4">Get the latest Java Edition version</p>
+              <a href="/download-java" class="btn btn-primary btn-sm">Download Java</a>
+            </div>
+          </div>
+          
+          <div class="card bg-base-200/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="card-body text-center">
+              <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h4 class="card-title justify-center text-secondary text-lg">Installation Guide</h4>
+              <p class="text-sm text-base-content/70 mb-4">Step-by-step installation instructions</p>
+              <a href="/how-to-install-jennymod" class="btn btn-secondary btn-sm">Learn How</a>
+            </div>
+          </div>
+          
+          <div class="card bg-base-200/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="card-body text-center">
+              <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h4 class="card-title justify-center text-accent text-lg">MCPE Version</h4>
+              <p class="text-sm text-base-content/70 mb-4">Mobile & Bedrock Edition download</p>
+              <a href="/mcpe" class="btn btn-accent btn-sm">Get MCPE</a>
+            </div>
           </div>
         </div>
-        
-        <div class="card bg-base-200 shadow-lg">
-          <div class="card-body text-center">
-            <h3 class="card-title justify-center text-primary">Installation Guide</h3>
-            <p class="text-sm text-base-content/70">Step-by-step instructions</p>
-            <a href="/how-to-install-jennymod" class="btn btn-primary btn-sm">Learn How</a>
-          </div>
-        </div>
-        
-        <div class="card bg-base-200 shadow-lg">
-          <div class="card-body text-center">
-            <h3 class="card-title justify-center text-primary">Server Setup</h3>
-            <p class="text-sm text-base-content/70">Multiplayer configuration</p>
-            <a href="/multiplayer-server" class="btn btn-primary btn-sm">Setup Guide</a>
-          </div>
+      </div>
+      
+      <!-- Search Suggestions -->
+      <div class="text-center">
+        <h3 class="text-xl font-semibold mb-4 text-base-content">
+          Looking for something specific?
+        </h3>
+        <p class="text-base-content/70 mb-6">
+          Try searching for what you need or contact us if you can't find it.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/" class="btn btn-outline btn-primary">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+            </svg>
+            Browse Homepage
+          </a>
+          <a href="/privacy-policy" class="btn btn-outline btn-secondary">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+            </svg>
+            Help & Support
+          </a>
         </div>
       </div>
     </div>
@@ -71,3 +131,45 @@ import { SITE_CONFIG } from '../config/domain.js';
   
   <Footer />
 </Layout>
+
+<!-- Structured Data for 404 Page -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "404 - Page Not Found",
+  "description": "The requested page could not be found on Jenny Mod website.",
+  "url": `${SITE_CONFIG.url}/404`,
+  "mainEntity": {
+    "@type": "Thing",
+    "name": "404 Error",
+    "description": "Page not found error"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": SITE_CONFIG.url
+      },
+      {
+        "@type": "ListItem", 
+        "position": 2,
+        "name": "404 - Page Not Found"
+      }
+    ]
+  }
+})}></script>
+
+<style>
+  /* Custom 404 animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>

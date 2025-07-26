@@ -9,7 +9,8 @@ const pages = [
   { path: '/privacy-policy/', priority: '0.3', changefreq: 'yearly' },
   { path: '/terms-and-conditions/', priority: '0.3', changefreq: 'yearly' },
   { path: '/disclaimer/', priority: '0.3', changefreq: 'yearly' },
-  { path: '/cookie-policy/', priority: '0.3', changefreq: 'yearly' }
+  { path: '/cookie-policy/', priority: '0.3', changefreq: 'yearly' },
+  { path: '/404/', priority: '0.1', changefreq: 'yearly' }
 ];
 
 const currentDate = new Date().toISOString().split('T')[0];
